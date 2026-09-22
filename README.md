@@ -65,9 +65,3 @@ Noura Maher Elamin
 ⭐️ If you find this project helpful, please give it a star!
 
 </div>
-
-⭐️ إذا وجدت هذا المشروع مفيدًا، فضلاً قم بعمل Star له!
-
-</div>
-
----
