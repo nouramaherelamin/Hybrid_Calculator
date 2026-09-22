@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="430" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00E5FF"/>
+      <stop offset="1" stop-color="#8A2BE2"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="130" y1="105" x2="380" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101525"/>
+      <stop offset="1" stop-color="#24254A"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect x="58" y="38" width="396" height="436" rx="72" fill="#0F0F12" stroke="url(#bg)" stroke-width="10"/>
+  <rect x="92" y="72" width="328" height="368" rx="42" fill="#171820" stroke="#FFFFFF" stroke-opacity=".12" stroke-width="3"/>
+
+  <rect x="125" y="108" width="262" height="82" rx="20" fill="url(#screen)" stroke="#00E5FF" stroke-opacity=".35" stroke-width="3"/>
+  <path d="M150 155h110" stroke="#fff" stroke-opacity=".5" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="344" cy="150" r="8" fill="#00E5FF" filter="url(#glow)"/>
+
+  <g fill="#2F3040">
+    <rect x="125" y="215" width="55" height="55" rx="15"/>
+    <rect x="195" y="215" width="55" height="55" rx="15"/>
+    <rect x="265" y="215" width="55" height="55" rx="15"/>
+    <rect x="335" y="215" width="52" height="55" rx="15"/>
+
+    <rect x="125" y="285" width="55" height="55" rx="15"/>
+    <rect x="195" y="285" width="55" height="55" rx="15"/>
+    <rect x="265" y="285" width="55" height="55" rx="15"/>
+    <rect x="335" y="285" width="52" height="55" rx="15"/>
+
+    <rect x="125" y="355" width="55" height="55" rx="15"/>
+    <rect x="195" y="355" width="55" height="55" rx="15"/>
+    <rect x="265" y="355" width="55" height="55" rx="15"/>
+  </g>
+
+  <g fill="#fff" font-family="Arial, sans-serif" font-size="27" font-weight="700" text-anchor="middle">
+    <text x="152" y="251">7</text>
+    <text x="222" y="251">8</text>
+    <text x="292" y="251">9</text>
+    <text x="361" y="251">÷</text>
+    <text x="152" y="321">4</text>
+    <text x="222" y="321">5</text>
+    <text x="292" y="321">6</text>
+    <text x="361" y="321">×</text>
+    <text x="152" y="391">1</text>
+    <text x="222" y="391">2</text>
+    <text x="292" y="391">3</text>
+  </g>
+
+  <rect x="335" y="355" width="52" height="55" rx="15" fill="url(#bg)"/>
+  <text x="361" y="392" fill="#fff" font-family="Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">=</text>
+  <circle cx="222" cy="383" r="5" fill="#00E5FF"/>
+  <circle cx="292" cy="383" r="5" fill="#8A2BE2"/>
+</svg>
