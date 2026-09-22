@@ -230,11 +230,11 @@ body {
     border-radius: var(--radius-lg);
     backdrop-filter: blur(12px) saturate(120%);
     width: 100%;
-    max-width: 360px;
+    max-width: 400px;
     padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     position: relative;
 }
 
@@ -251,6 +251,12 @@ body {
     font-weight: bold;
     color: var(--text-color);
     margin: 0;
+}
+
+.top-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 #theme-btn {
@@ -276,6 +282,68 @@ body {
     transform: scale(0.98);
 }
 
+/* Generic small icon button (sound, history, copy, converter swap, panel actions) */
+.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.25s ease;
+}
+
+.icon-btn:hover {
+    background: var(--accent);
+    color: #111;
+    transform: translateY(-1px);
+    box-shadow: 0 0 14px var(--accent);
+}
+
+.icon-btn:active {
+    transform: scale(0.95);
+}
+
+/* Mode Tabs */
+.mode-tabs {
+    display: flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 5px;
+    border-radius: 12px;
+}
+
+.mode-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    opacity: 0.7;
+    padding: 9px 6px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.mode-btn:hover {
+    opacity: 1;
+}
+
+.mode-btn.active {
+    background: var(--accent);
+    color: #111;
+    opacity: 1;
+    box-shadow: 0 0 14px var(--accent);
+}
+
 /* Display Container */
 .display-container {
     position: relative;
@@ -299,6 +367,35 @@ body {
     border-radius: inherit;
     box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.25), 0 0 0 3px rgba(138, 43, 226, 0.15) inset;
     pointer-events: none;
+}
+
+.memory-indicator {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 1px 6px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+}
+
+.memory-indicator.show {
+    opacity: 1;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+    z-index: 2;
 }
 
 #expression {
@@ -327,12 +424,28 @@ body {
     overflow-wrap: anywhere;
 }
 
+/* Keypad wrapper */
+.keypad {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
 /* Keys Grid */
 .keys {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 14px;
     width: 100%;
+}
+
+.keys.mem-row {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.keys.sci-row {
+    gap: 10px;
 }
 
 /* Button Base Styling */
@@ -407,6 +520,34 @@ body {
     box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
 }
 
+/* Memory buttons (MC, MR, M+, M-, MS) */
+.btn-mem {
+    height: 44px;
+    font-size: 13px;
+    background: linear-gradient(180deg, rgba(255, 191, 0, 0.15), rgba(255, 191, 0, 0.05));
+    border-color: rgba(255, 191, 0, 0.32);
+    color: #fff;
+}
+
+.btn-mem:hover {
+    background: linear-gradient(180deg, rgba(255, 191, 0, 0.25), rgba(255, 191, 0, 0.1));
+    box-shadow: 0 0 16px rgba(255, 191, 0, 0.35);
+}
+
+/* Scientific buttons */
+.btn-sci {
+    height: 48px;
+    font-size: 14px;
+    background: linear-gradient(180deg, rgba(0, 229, 255, 0.14), rgba(0, 229, 255, 0.05));
+    border-color: rgba(0, 229, 255, 0.3);
+    color: #fff;
+}
+
+.btn-sci:hover {
+    background: linear-gradient(180deg, rgba(0, 229, 255, 0.24), rgba(0, 229, 255, 0.1));
+    box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
+}
+
 /* Equals button */
 .btn-eq {
     background: var(--accent);
@@ -427,6 +568,185 @@ body {
 .btn.zero {
     /* You can uncomment this if you want zero to span 2 columns */
     /* grid-column: span 2; */
+}
+
+/* Converter Panel */
+.converter-panel {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 18px;
+}
+
+.converter-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.converter-row label {
+    font-size: 13px;
+    opacity: 0.8;
+    color: var(--text-color);
+    min-width: 60px;
+}
+
+.converter-panel select,
+.converter-panel input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: var(--font);
+}
+
+.converter-panel select option {
+    color: #111;
+}
+
+.converter-inputs {
+    justify-content: space-between;
+}
+
+.converter-output {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--accent);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.conv-swap {
+    align-self: center;
+}
+
+/* History Panel */
+.history-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 50;
+}
+
+.history-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.history-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(320px, 88vw);
+    background: linear-gradient(180deg, #1a1a2e, #16213e);
+    color: #fff;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+    gap: 12px;
+}
+
+.history-panel.open {
+    transform: translateX(0);
+}
+
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.history-header h3 {
+    font-size: 17px;
+}
+
+.history-header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.history-list {
+    list-style: none;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: background 0.2s ease;
+}
+
+.history-item:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.history-expr {
+    font-size: 12px;
+    opacity: 0.65;
+    word-break: break-all;
+}
+
+.history-result {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.history-empty {
+    text-align: center;
+    opacity: 0.5;
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+/* Toast notification */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(20, 20, 30, 0.95);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 100;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* Footer Section */
@@ -518,62 +838,77 @@ body {
         max-width: 340px;
         margin: 10px;
     }
-    
+
     .btn {
         height: 60px;
         font-size: 18px;
     }
-    
+
+    .btn-mem {
+        height: 40px;
+        font-size: 11px;
+    }
+
+    .btn-sci {
+        height: 44px;
+        font-size: 12px;
+    }
+
     .btn-eq {
         font-size: 22px;
     }
-    
+
     #result {
         font-size: 36px;
     }
-    
+
     #expression {
         font-size: 14px;
     }
-    
+
     .top-bar h2 {
         font-size: 20px;
     }
-    
+
     .social-icons {
         gap: 6px;
     }
-    
+
     .icon-link {
         width: 18px;
         height: 18px;
         font-size: 9px;
     }
-    
+
     .footer-section p {
         font-size: 7px;
+    }
+
+    .mode-btn {
+        font-size: 11px;
+        padding: 8px 4px;
     }
 }
 
 @media (min-width: 768px) {
     .calculator-container {
-        max-width: 380px;
+        max-width: 420px;
         padding: 30px;
     }
-    
+
     .btn {
         height: 70px;
         font-size: 22px;
     }
-    
+
     .btn-eq {
         font-size: 26px;
     }
-    
+
     #result {
         font-size: 48px;
     }
-    
+
     #expression {
         font-size: 18px;
     }
@@ -590,7 +925,9 @@ body {
     outline-offset: 2px;
 }
 
-#theme-btn:focus-visible {
+#theme-btn:focus-visible,
+.icon-btn:focus-visible,
+.mode-btn:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.5);
     outline-offset: 2px;
 }
